@@ -29,11 +29,6 @@ def render(
         device
     ):
     # convert aoi, azimuth, and z_dist to plane_a and plane_d (ax+d=0 form where d is positive)
-    # plane_a = torch.tensor([
-    #     torch.cos(azimuth) * torch.sin(aoi),
-    #     torch.sin(azimuth) * torch.sin(aoi),
-    #     torch.cos(aoi),
-    # ])
     plane_a = torch.tensor([1, 0, 0]) * torch.cos(azimuth) * torch.sin(aoi) + \
         torch.tensor([0, 1, 0]) * torch.sin(azimuth) * torch.sin(aoi) + \
         torch.tensor([0, 0, 1]) * torch.cos(aoi)
