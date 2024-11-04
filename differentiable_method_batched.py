@@ -132,7 +132,8 @@ def render_batched(
             padding=num_bins - 1,
             groups=1
         )
-        hist = hist[:, 0, :num_bins] # (13, 128) TODO maybe try taking 0 idx on first axis only
+        # TODO not sure why taking the 0 index on axis 1 below is necessary
+        hist = hist[:, 0, :num_bins] # (13, 128) 
 
         image[:, i] = hist
 
@@ -141,7 +142,7 @@ def render_batched(
 
     # add the dc offset - maybe this should override the function rather than add to it?
     # e.g. maybe it should be hist = max(dc_offset, hist)
-    image = image + dc_offset[:, None, None]
+    image = image + dc_offset[:, None, None] # (batch_size, 9, 128)
 
     return image
 
